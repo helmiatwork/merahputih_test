@@ -49,20 +49,3 @@ DoubleEntry is an accounting system based on the principles of a Double-entry Bo
 Simple, efficient background processing for Ruby.
 
 Sidekiq uses threads to handle many jobs at the same time in the same process. It does not require Rails but will integrate tightly with Rails to make background processing dead simple.
-
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
