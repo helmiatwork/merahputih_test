@@ -12,6 +12,17 @@ module Admin
       @transactions = DoubleEntryLine.order(created_at: :asc)
     end
 
+    def create
+      response = TransferService.execute(permitted_params)
+      if response.success?
+        flash[:success] = "Successfully #{permitted_params[:transfer_code]}"
+      else
+        flash[:error] = "Failed #{permitted_params[:transfer_code]}"
+      end
+
+      redirect_to admin_transactions_path
+    end
+
     def permitted_params
       params.permit(:from_id, :to_id, :amount, :transfer_code)
     end
