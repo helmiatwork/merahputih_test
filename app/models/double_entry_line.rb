@@ -1,0 +1,2 @@
+class DoubleEntryLine < ApplicationRecord
+end
