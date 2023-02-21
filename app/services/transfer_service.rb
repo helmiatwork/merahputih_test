@@ -105,7 +105,7 @@ class TransferService < ApplicationService
     end
 
     def is_a_number?
-        raise "amount should a numeric" if !amount.is_a?(Float)
+        raise "amount should a Integer e.g $100.10 please write 10010" if !amount.is_a?(Integer)
     end
 
     def is_amount_greather_than_zero?
