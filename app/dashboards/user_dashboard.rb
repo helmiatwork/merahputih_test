@@ -10,7 +10,7 @@ class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     email: Field::String,
-    encrypted_password: Field::String,
+    password: Field::Password,
     name: Field::String,
     remember_created_at: Field::DateTime,
     reset_password_sent_at: Field::DateTime,
@@ -27,7 +27,6 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     email
-    encrypted_password
     name
   ].freeze
 
@@ -36,11 +35,7 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     email
-    encrypted_password
     name
-    remember_created_at
-    reset_password_sent_at
-    reset_password_token
     created_at
     updated_at
   ].freeze
@@ -50,11 +45,8 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     email
-    encrypted_password
     name
-    remember_created_at
-    reset_password_sent_at
-    reset_password_token
+    password
   ].freeze
 
   # COLLECTION_FILTERS
