@@ -1,5 +1,5 @@
 class TransferService < ApplicationService
-    attr_accessor :from_id, :to_id, :amount, :transfer_code, :note
+    attr_accessor :from_id, :to_id, :transfer_amount, :transfer_code, :note
 
     TRANSFER_CODES = %i[withdraw deposit transfer].freeze
 
@@ -40,6 +40,10 @@ class TransferService < ApplicationService
     end
 
     private
+
+    def amount
+        transfer_amount.to_i * 100
+    end
 
     def deposit
         DoubleEntry.transfer(
