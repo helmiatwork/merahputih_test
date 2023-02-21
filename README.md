@@ -19,6 +19,7 @@
 - `rails db:seed`
 - `rails server`
 -  Open new terminal tab and run `sidekiq` to process background job
+- or you can run `bin/server` once you execute `db:setup` at first already
 
 ## Additional gems
 - `gem "administrate", "~> 0.18.0"`
