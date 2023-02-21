@@ -11,32 +11,45 @@ By default, it renders:
 - Flashes
 - Links to stylesheets and JavaScripts
 %>
-
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
-<head>
-  <meta charset="utf-8">
-  <meta name="ROBOTS" content="NOODP">
-  <meta name="viewport" content="initial-scale=1">
-  <title>
-    <%= content_for(:title) %> - <%= application_title %>
-  </title>
-  <%= render "stylesheet" %>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag if defined?(csp_meta_tag) %>
-</head>
-<body>
-  <%= render "icons" %>
-
-  <div class="app-container">
-    <%= render "navigation" -%>
-
-    <main class="main-content" role="main">
-      <%= render "flashes" -%>
-      <%= yield %>
-    </main>
-  </div>
-
-  <%= render "javascript" %>
-</body>
-</html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="ROBOTS" content="NOODP">
+    <meta name="viewport" content="initial-scale=1">
+    <title> <%= content_for(:title) %> - <%= application_title %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render "stylesheet" %>
+    <%= render "javascript" %>
+    <%= csp_meta_tag if defined?(csp_meta_tag) %>
+  </head>
+  <body data-scrollbar-auto-hide="n" class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <%= render "base/header" %>
+      <%= render "base/sidebar" %>
+      <div class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <%= render_breadcrumbs :separator => ' / ' %> <%="/ "+params[:type] if params.key? :type%>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <div class="content container-fluid">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+      <%= render "base/footer" %>
+      <div>
+      </body>
+    </html>
