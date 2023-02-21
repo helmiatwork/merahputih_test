@@ -2,11 +2,11 @@ require "sidekiq/web"
 require "sidekiq/middleware/i18n"
 
 Sidekiq.configure_server do |config|
-  config.redis = {url: ENV["REDIS_URL"]}
+  config.redis = {url: Rails.application.credentials(:redis_url, Rails.env)}
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = {url: ENV["REDIS_URL"]}
+  config.redis = {url: Rails.application.credentials(:redis_url, Rails.env)}
 end
 
 Sidekiq.configure_client do |config|
