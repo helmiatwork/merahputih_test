@@ -1,6 +1,3 @@
 web: unset PORT && bin/rails server
-bundle: bundle
-migration: rails db:migrate
 css: yarn build:css --watch
 js: yarn build --watch
-sidekiq: sidekiq
