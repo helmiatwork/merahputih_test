@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/envato/double_entry.git
+  revision: 144e82456f934a138c011289f23962d97e1d6de3
+  specs:
+    double_entry (2.0.0.beta5)
+      activerecord (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      money (>= 6.0.0)
+      railties (>= 6.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -142,6 +152,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.17.0)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
     msgpack (1.6.0)
     net-imap (0.3.4)
       date
@@ -257,6 +269,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  double_entry!
   jbuilder
   jsbundling-rails
   puma (~> 5.0)
