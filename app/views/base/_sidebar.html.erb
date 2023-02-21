@@ -1,0 +1,44 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image text-white">
+        <i class="fa fa-user mt-2"></i>
+      </div>
+      <div class="info">
+        <%=link_to current_administrator.email , root_path %>
+      </div>
+    </div>
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+      </div>
+      <div class="info">
+        <%=link_to destroy_administrator_session_path, method: :delete, class: "font-weight-bold text-danger" do%>
+          Logout <i class="fa fa-sign-out ml-1" aria-hidden="true"></i>
+        <%end%>
+      </div>
+    </div>
+    <!-- SidebarSearch Form -->
+    <!-- Sidebar Menu -->
+    <nav class="mt-2" style="margin-bottom: 40%">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <%=link_to admin_users_path, class: "nav-link", target: "_self" do%>
+            <i class="nav-icon fas fa-users"></i>
+            <p>User</p>
+          <% end%>
+        </li>
+
+        <li class="nav-item">
+          <%=link_to admin_transactions_path, class: "nav-link", target: "_self" do%>
+            <i class="nav-icon fas fa-exchange"></i>
+            <p>Transaction</p>
+          <% end%>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
