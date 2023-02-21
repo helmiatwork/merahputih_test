@@ -16,14 +16,14 @@ DoubleEntry.configure do |config|
       end
     end
     
-    accounts.define(identifier: :system_expense, currency: :USD)
-    accounts.define(identifier: :system_income, currency: :USD, positive_only: true)
-    accounts.define(identifier: :user, scope_identifier: scope, currency: :USD, positive_only: true)
+    accounts.define(identifier: :system_expense, currency: :usd)
+    accounts.define(identifier: :system_income, currency: :usd, positive_only: true)
+    accounts.define(identifier: :user, scope_identifier: scope, currency: :usd, positive_only: true)
   end
 
   config.define_transfers do |transfers|
-    transfers.define(from: :system_expense, to: :user, code: :withdraw)
-    transfers.define(from: :user, to: :system_income, code: :deposit)
+    transfers.define(from: :user, to: :system_income, code: :withdraw)
+    transfers.define(from: :system_expense, to: :user, code: :deposit)
     transfers.define(from: :user, to: :user, code: :transfer)
   end
 end
