@@ -1,2 +1,23 @@
+// system level; installed by rails
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+/**
+ *  import the necessary Bootstrap files 
+ */
+ @import "bootstrap/scss/functions";
+ @import "bootstrap/scss/mixins";
+ @import 'bootstrap/scss/variables';
+ @import "bootstrap/scss/utilities";
+ @import "bootstrap/scss/_functions.scss";
+ @import "bootstrap/scss/functions.scss";
+ @import "bootstrap/scss/variables";
+ @import "bootstrap/scss/utilities";
+ @import "adminlte";
+ @import '@fortawesome/fontawesome-free/css/all.min';
+ @import "bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min"; 
+ @import "daterangepicker/daterangepicker";
+ @import "jsgrid/dist/jsgrid.min";
+ @import "custom.daterange";
+ @import "pikaday/scss/pikaday"
+ 
