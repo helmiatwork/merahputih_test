@@ -6,7 +6,7 @@ module Admin
     before_action :set_selected_users
     before_action :set_transfer_codes
 
-    add_breadcrumb :transactions
+    add_breadcrumb "transactions"
 
     def index
       
@@ -16,11 +16,12 @@ module Admin
       params.permit(:from_id, :to_id, :amount, :transfer_code)
     end
 
-    def set_selected_counter
+    def set_selected_users
       @users ||= User.all
     end
 
-    def transfer_codes
+    def set_transfer_codes
+      @transfer_codes ||= TransferService::TRANSFER_CODES
     end
   end
 end
