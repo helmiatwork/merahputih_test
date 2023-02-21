@@ -10,7 +10,7 @@
 - Sqlite3
 
 ## Cache management
-- Redis
+- Redis with minimum version is `6.2.0`
 
 ## How to run the app locally
 - `cd` into the project directory
