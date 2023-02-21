@@ -9,11 +9,11 @@ module Admin
     add_breadcrumb "transactions"
 
     def index
-      @transactions = DoubleEntryLine.order(created_at: :asc)
+      @transactions = DoubleEntryLine.order(created_at: :desc)
     end
 
     def create
-      response = TransferService.execute(permitted_params)
+      response = TransferService.execute(permitted_params.as_json)
       if response.success?
         flash[:success] = "Successfully #{permitted_params[:transfer_code]}"
       else
@@ -24,7 +24,7 @@ module Admin
     end
 
     def permitted_params
-      params.permit(:from_id, :to_id, :amount, :transfer_code)
+      params.permit(:from_id, :to_id, :transfer_amount, :transfer_code)
     end
 
     def set_selected_users
