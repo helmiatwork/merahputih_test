@@ -26,11 +26,11 @@ class ApplicationService
     end
 
     def error_messages
-      errors.full_messages.join(", ")
+      errors.full_messages.join(", ").underscore.humanize
     end
 
     def return_errors(e)
-      Rails.logger.error(e.message)
-      errors.add(:base, e.message)
+      Rails.logger.error(e)
+      errors.add(:base, e)
     end
   end
