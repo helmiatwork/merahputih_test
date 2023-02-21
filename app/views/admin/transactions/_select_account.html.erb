@@ -1,0 +1,6 @@
+<select name="<%=name%>" class="selectize">
+    <option value="-"><%=placeholder%></option>
+    <%@users.each do |u|%>
+        <option value="<%=u.id%>"><%=u.name%></option>
+    <%end%>
+</select>
