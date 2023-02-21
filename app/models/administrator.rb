@@ -5,5 +5,5 @@ class Administrator < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  valudates :password, presence: true
+  validates :password, presence: true
 end
