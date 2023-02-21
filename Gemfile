@@ -78,9 +78,7 @@ end
 gem "administrate", "~> 0.18.0"
 gem "devise", "~> 4.9"
 gem "double_entry", github: "envato/double_entry"
-
 gem "sidekiq", "~> 7.0"
-
 gem "redis-rails", "~> 5.0"
-
 gem "standardrb", "~> 1.0"
+gem "breadcrumbs_on_rails", "~> 4.1"
