@@ -7,7 +7,7 @@
         <i class="fa fa-user mt-2"></i>
       </div>
       <div class="info">
-        <%=link_to current_administrator.email , root_path %>
+        <%#=link_to current_administrator.email , root_path %>
       </div>
     </div>
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -26,14 +26,14 @@
         <li class="nav-item">
           <%=link_to admin_users_path, class: "nav-link", target: "_self" do%>
             <i class="nav-icon fas fa-users"></i>
-            <p>User</p>
+            <p>Users</p>
           <% end%>
         </li>
 
         <li class="nav-item">
           <%=link_to admin_transactions_path, class: "nav-link", target: "_self" do%>
             <i class="nav-icon fas fa-exchange"></i>
-            <p>Transaction</p>
+            <p>Transactions</p>
           <% end%>
         </li>
       </ul>
