@@ -15,7 +15,7 @@ module Admin
     def create
       response = TransferService.execute(permitted_params.as_json)
       if response.success?
-        flash[:success] = "Successfully #{permitted_params[:transfer_code]}"
+        flash[:success] = "Successfully #{permitted_params[:transfer_code]} $ #{permitted_params[:transfer_amount]}"
       else
         flash[:error] = "Failed #{permitted_params[:transfer_code]}"
       end
