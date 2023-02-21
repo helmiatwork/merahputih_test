@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :admin do
+    resources :users
+    resources :transactions
+    resources :double_entry_lines
+  end
 end
