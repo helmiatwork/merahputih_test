@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   root to: "admin/users#index"
   namespace :admin do
+    root to: redirect("admin/users")
     resources :users
     resources :transactions
   end
