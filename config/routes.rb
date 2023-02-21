@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
+  root to: "admin/users#index"
   namespace :admin do
     resources :users
     resources :transactions
