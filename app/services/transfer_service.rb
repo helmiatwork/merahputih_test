@@ -5,66 +5,83 @@ class TransferService < ApplicationService
 
     def execute
         validate!
-
-        case transfer_code
-        when :deposit
-            transfer_system_income_to_user
-        when :withdraw
-            transfer_system_expense_to_user
-        when :transfer
-            transfer_user_to_user
-        end
-
+        self.send(transfer_code)
+        
+    rescue DoubleEntry::AccountWouldBeSentNegative => e
+        return_errors "AccountWouldBeSentNegative"
+    rescue DoubleEntry::DoubleEntryError => e
+        return_errors "DoubleEntryError"
+    rescue DoubleEntry::UnknownAccount => e
+        return_errors "UnknownAccount"
+    rescue DoubleEntry::AccountIdentifierTooLongError => e
+        return_errors "AccountIdentifierTooLongError"
+    rescue DoubleEntry::ScopeIdentifierTooLongError => e
+        return_errors "ScopeIdentifierTooLongError"
+    rescue DoubleEntry::TransferNotAllowed => e
+        return_errors "TransferNotAllowed"
+    rescue DoubleEntry::TransferIsNegative => e
+        return_errors "TransferIsNegative"
+    rescue DoubleEntry::TransferCodeTooLongError => e
+        return_errors "TransferCodeTooLongError"
+    rescue DoubleEntry::DuplicateAccount => e
+        return_errors "DuplicateAccount"
+    rescue DoubleEntry::DuplicateTransfer => e
+        return_errors "DuplicateTransfer"
+    rescue DoubleEntry::AccountWouldBeSentNegative => e
+        return_errors "AccountWouldBeSentNegative"
+    rescue DoubleEntry::AccountWouldBeSentPositiveError => e
+        return_errors "AccountWouldBeSentPositiveError"
+    rescue DoubleEntry::MismatchedCurrencies => e
+        return_errors "MismatchedCurrencies"
+    rescue DoubleEntry::MissingAccountError => e
+        return_errors "MissingAccountError"
     rescue => e
         return_errors e
     end
 
     private
 
-    def transfer_system_income_to_user
+    def deposit
         DoubleEntry.transfer(
-            transfer_params.merge(
-                from: from,
-                to: :system_income,
-            )
+            Money.new(amount), 
+            from: system_expense, 
+            to: to,
+            code: transfer_code.to_sym
         )
     end
 
-    def transfer_system_expense_to_user
+    def withdraw
         DoubleEntry.transfer(
-            transfer_params.merge(
-                from: :system_expense,
-                to: to
-            )
+            Money.new(amount), 
+            from: from, 
+            to: system_income,
+            code: transfer_code.to_sym
         )
     end
 
-    def transfer_user_to_user
+    def transfer
         DoubleEntry.transfer(
-            transfer_params.merge(
-                from: from,
-                to: to
-            )
+            Money.new(amount), 
+            from: from, 
+            to: to,
+            code: transfer_code.to_sym
         )
     end
 
-    def transfer_params
-        {
-            Money.new(amount),            
-            code: transfer_code,
-            metadata: {
-                note: note,
-                uniq: SecureRandom.uuid
-            }
-        }
+    def system_income
+        DoubleEntry.account(:system_income)
+    end
+
+    def system_expense
+        DoubleEntry.account(:system_expense)
     end
 
     def from
-        from ||= User.find(from_id)
+        @from ||= DoubleEntry.account(:user, scope: User.find(from_id))
     end
 
     def to
-        to ||= User.find(to_id)
+        @to ||= DoubleEntry.account(:user, scope: User.find(to_id))
     end
 
     def validate!
@@ -76,19 +93,19 @@ class TransferService < ApplicationService
     end
 
     def is_from_id_present?
-        if [:transfer, :deposit].include? transfer_code
+        if [:transfer, :withdraw].include? transfer_code
             raise "from_id cannot be blank" if from_id.blank?
         end
     end
 
     def is_to_id_present?
-        if [:transfer, :withdraw].include? transfer_code
+        if [:transfer, :deposit].include? transfer_code
             raise "to_id cannot be blank" if to_id.blank?
         end
     end
 
     def is_a_number?
-        raise "amount should a numeric" if !amount.is_a? Float || !amount.is_a? Integer
+        raise "amount should a numeric" if !amount.is_a?(Float)
     end
 
     def is_amount_greather_than_zero?
