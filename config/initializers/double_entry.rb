@@ -24,5 +24,6 @@ DoubleEntry.configure do |config|
   config.define_transfers do |transfers|
     transfers.define(from: :system_expense, to: :user, code: :withdraw)
     transfers.define(from: :user, to: :system_income, code: :deposit)
+    transfers.define(from: :user, to: :user, code: :transfer)
   end
 end
