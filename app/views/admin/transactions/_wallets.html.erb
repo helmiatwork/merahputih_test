@@ -11,6 +11,14 @@
         </tr>
       </thead>
       <tbody>
+       <tr>
+            <td>System Income</td>
+            <td><%=DoubleEntry.account(:system_income).balance.to_f%></td>
+          </tr>
+          <tr>
+            <td>System Expense</td>
+            <td><%=DoubleEntry.account(:system_expense).balance.to_f%></td>
+          </tr>
         <%@users.each do |u|%>
           <tr>
             <td><%=u.name%></td>
