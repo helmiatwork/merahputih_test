@@ -9,7 +9,7 @@ module Admin
     add_breadcrumb "transactions"
 
     def index
-      
+      @transactions = DoubleEntryLine.order(created_at: :asc)
     end
 
     def permitted_params
