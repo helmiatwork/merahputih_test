@@ -13,6 +13,12 @@
 - Redis
 
 ## How to run the app locally
+- `cd` into the project directory
+- `bundle install`
+- `rails db:setup`
+- `rails db:seed`
+- `rails server`
+-  Open new terminal tab and run `sidekiq` to process background job
 
 ## Additional gems
 - `gem "administrate", "~> 0.18.0"`
