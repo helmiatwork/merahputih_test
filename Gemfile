@@ -75,3 +75,5 @@ group :test do
 end
 
 gem "administrate", "~> 0.18.0"
+
+gem "devise", "~> 4.9"
