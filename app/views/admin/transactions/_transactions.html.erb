@@ -20,8 +20,8 @@
             <td><%=t.account == "user"? User.find(t.scope).name : t.account%></td>
             <td><%=t.partner_account == "user"? User.find(t.partner_scope).name : t.partner_account%></td>
             <td><%=t.code%></td>
-            <td><%=t.amount%></td>
-            <td><%=t.balance%></td>
+            <td><%=Money.new(t.amount)%></td>
+            <td><%=Money.new(t.balance)%></td>
             <td><%=t.created_at.to_s%></td>
           </tr>
         <%end%>
