@@ -9,9 +9,9 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  root to: "admin/users#index"
+  root to: "admin/transactions#index"
   namespace :admin do
-    root to: redirect("admin/users")
+    root to: redirect("transactions/index")
     resources :users
     resources :transactions
   end
