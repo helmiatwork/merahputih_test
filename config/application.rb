@@ -12,6 +12,12 @@ module Merahputih
     config.load_defaults 7.0
     config.active_record.cache_versioning = false
 
+    config.to_prepare do
+      Devise::Mailer.layout "devise_mailer"
+      Devise::SessionsController.layout "home"
+      # Devise::Mailer.helper :email
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
