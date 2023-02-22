@@ -7,7 +7,7 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
     add_breadcrumb "home", :admin_root_path
-    # before_action :authenticate_administrator!
+    before_action :authenticate_administrator!
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.
