@@ -1,5 +1,6 @@
 # README
-
+# Project
+This is a howe work test from Merah Putih Group for Senior Ruby on Rails engineer
 ## Ruby version
 - 3.2.1
 
@@ -9,12 +10,15 @@
 ## Database
 - Sqlite3
 
-## Cache management
+## System Dependencies
+- nodejs >=14 (LTS)
+- yarn >= 1 (Stable)
 - Redis with minimum version is `6.2.0`
 
 ## How to run the app locally
 - `cd` into the project directory
 - `bundle install`
+- `yarn`
 - `rails db:setup`
 - `rails db:seed`
 - `rails server`
